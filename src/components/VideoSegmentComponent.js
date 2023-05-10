@@ -4,7 +4,7 @@ import { useCallback, useEffect, useState } from "react"
 export function VideoSegmentComponent() {
 	const [isBtnDisabled, setIsBtnDisabled] = useState(true)
 	const [videoLink, setVideoLink] = useState("")
-	const [videoDuration, setVideoDuration] = useState(0)
+	const [videoDuration, setVideoDuration] = useState("")
 	const [selectedSegmentSetting, setSelectedSegmentSetting] = useState("")
 	const [videoSources] = useState([])
 

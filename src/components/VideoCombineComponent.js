@@ -7,8 +7,8 @@ export function VideoCombineComponent() {
 	const [isBtnDisabled, setIsBtnDisabled] = useState(true)
 
 	const [resultVideo, setResultVideo] = useState("")
-	const [videoHeight, setVideoHeight] = useState(0)
-	const [videoWidth, setVideoWidth] = useState(0)
+	const [videoHeight, setVideoHeight] = useState("")
+	const [videoWidth, setVideoWidth] = useState("")
 	// Api call
 
 	const handleUpdateVideo = (e, index) => {
@@ -31,7 +31,7 @@ export function VideoCombineComponent() {
 	const handleAddVideo = () => {
 		console.log("handle add video called")
 		setVideosData((videosData) => {
-			return [...videosData, { videoUrl: "", startDuration: 0, endDuration: 0 }]
+			return [...videosData, { videoUrl: "", startDuration: "", endDuration: "" }]
 		})
 	}
 
@@ -88,90 +88,93 @@ export function VideoCombineComponent() {
 					<Button variant="primary" type="button" onClick={handleAddVideo} className="mt-3 mb-3 add-video">
 						Add video
 					</Button>
-					{!!videosData.length &&
-						videosData.map((video, index) => (
-							<>
-								<Row className="mb-2">
-									<Col>
-										<Form.Group key={video.videoUrl} controlId="combineVideos">
-											<Form.Control
-												className={`combine-video-${index + 1}`}
-												type="text"
-												name="videoUrl"
-												placeholder="Enter video link"
-												value={video.videoUrl}
-												onChange={(e) => handleUpdateVideo(e, index)}
-											/>
-										</Form.Group>
-									</Col>
 
-									<Col>
-										<Form.Group key={video.videoUrl} controlId="combineVideos">
-											<Form.Control
-												className={`combine-video-range-duration-start-${index + 1}`}
-												type="numeric"
-												name="startDuration"
-												placeholder="Start duration(in seconds)"
-												value={video.startDuration}
-												onChange={(e) => handleUpdateVideo(e, index)}
-											/>
-										</Form.Group>
-									</Col>
+					<Container>
+						{!!videosData.length &&
+							videosData.map((video, index) => (
+								<>
+									<Row className="mb-2">
+										<Col>
+											<Form.Group key={video.videoUrl} controlId="combineVideos">
+												<Form.Control
+													className={`combine-video-${index + 1}`}
+													type="text"
+													name="videoUrl"
+													placeholder="Enter video link"
+													value={video.videoUrl}
+													onChange={(e) => handleUpdateVideo(e, index)}
+												/>
+											</Form.Group>
+										</Col>
 
-									<Col>
-										<Form.Group key={video.videoUrl} controlId="combineVideos">
-											<Form.Control
-												className={`combine-video-range-duration-end-${index + 1}`}
-												type="numeric"
-												name="endDuration"
-												placeholder="Enter end duration"
-												value={video.endDuration}
-												onChange={(e) => handleUpdateVideo(e, index)}
-											/>
-										</Form.Group>
-									</Col>
+										<Col>
+											<Form.Group key={video.videoUrl} controlId="combineVideos">
+												<Form.Control
+													className={`combine-video-range-duration-start-${index + 1}`}
+													type="numeric"
+													name="startDuration"
+													placeholder="Start duration(in seconds)"
+													value={video.startDuration}
+													onChange={(e) => handleUpdateVideo(e, index)}
+												/>
+											</Form.Group>
+										</Col>
 
-									<Col>
-										<Button
-											variant="secondary	"
-											type="button"
-											onClick={() => {
-												handleDeleteVideo(index)
-											}}
-											className={`delete-combine-video-range-duration-${index + 1}`}
-										>
-											Delete
-										</Button>
-									</Col>
-								</Row>
-							</>
-						))}
-					{!!videosData.length && (
-						<Row>
-							<Col>
-								<Form.Group key={"video-height"} controlId="combineVideos">
-									<Form.Control
-										className={`video-height`}
-										type="numeric"
-										placeholder="Enter Video Height"
-										value={videoHeight}
-										onChange={(e) => setVideoHeight(e.target.value)}
-									/>
-								</Form.Group>
-							</Col>
-							<Col>
-								<Form.Group key={`video-width`} controlId="combineVideos">
-									<Form.Control
-										className={`video-width`}
-										type="numeric"
-										placeholder="Enter Video Width"
-										value={videoWidth}
-										onChange={(e) => setVideoWidth(e.target.value)}
-									/>
-								</Form.Group>
-							</Col>
-						</Row>
-					)}
+										<Col>
+											<Form.Group key={video.videoUrl} controlId="combineVideos">
+												<Form.Control
+													className={`combine-video-range-duration-end-${index + 1}`}
+													type="numeric"
+													name="endDuration"
+													placeholder="End duration(in seconds)"
+													value={video.endDuration}
+													onChange={(e) => handleUpdateVideo(e, index)}
+												/>
+											</Form.Group>
+										</Col>
+
+										<Col>
+											<Button
+												variant="secondary	"
+												type="button"
+												onClick={() => {
+													handleDeleteVideo(index)
+												}}
+												className={`delete-combine-video-range-duration-${index + 1}`}
+											>
+												Delete
+											</Button>
+										</Col>
+									</Row>
+								</>
+							))}
+						{!!videosData.length && (
+							<Row>
+								<Col>
+									<Form.Group key={"video-height"} controlId="combineVideos">
+										<Form.Control
+											className={`video-height`}
+											type="numeric"
+											placeholder="Enter Video Height"
+											value={videoHeight}
+											onChange={(e) => setVideoHeight(e.target.value)}
+										/>
+									</Form.Group>
+								</Col>
+								<Col>
+									<Form.Group key={`video-width`} controlId="combineVideos">
+										<Form.Control
+											className={`video-width`}
+											type="numeric"
+											placeholder="Enter Video Width"
+											value={videoWidth}
+											onChange={(e) => setVideoWidth(e.target.value)}
+										/>
+									</Form.Group>
+								</Col>
+							</Row>
+						)}
+					</Container>
 					<br />
 					<Button
 						variant="primary"
